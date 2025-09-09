@@ -1,0 +1,21 @@
+<!-- src/app/home/home.html -->
+<div class="container">
+  <h2>Your Documents</h2>
+
+  <input #fileInput type="file" accept="application/pdf" (change)="onFileSelected($event)" multiple style="display:none" />
+
+  <div class="controls">
+    <button (click)="triggerFileInput()">Select PDF(s)</button>
+    <button (click)="logout()">Logout</button>
+  </div>
+
+  <p *ngIf="uploadMessage" class="message">{{ uploadMessage }}</p>
+
+  <ul *ngIf="uploadedFiles.length > 0">
+    <li *ngFor="let f of uploadedFiles">
+      <a [href]="f.path" target="_blank" rel="noopener noreferrer">{{ f.originalName }}</a>
+    </li>
+  </ul>
+
+  <p *ngIf="uploadedFiles.length === 0">No documents uploaded yet.</p>
+</div>
